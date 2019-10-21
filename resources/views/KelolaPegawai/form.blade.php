@@ -14,23 +14,30 @@
                 </div>
             </div>
             <div class="card-body">
-                <form class="form-horizontal">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <form action="{{ url('') }}/{{$aksi}}pegawai" method="post">
+                    @csrf
+                    @if($aksi=="Edit")<input type="hidden" class="form-control" name="id" value="{{$pegawai->id_pegawai}}">@endif
                     <div class="form-group row">
                         <label for="nip" class="col-sm-2 col-form-label">NIP</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="nip">
+                            <input type="text" class="form-control" name="nip" id="nip" @if($aksi=="Edit") value="{{$pegawai->id_pegawai}}" @endif>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Nama" class="col-sm-2 col-form-label">Nama Pegawai</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="Nama">
+                            <input type="text" class="form-control" name="nama" id="Nama" @if($aksi=="Edit") value="{{$pegawai->nama_pegawai}}" @endif>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Alamat" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-sm-5">
-                            <textarea class="form-control" id="Alamat"></textarea>
+                            <textarea class="form-control" id="Alamat" name="alamat">@if($aksi=="Edit"){{$pegawai->id_pegawai}}@endif</textarea>
                         </div>
                     </div>
                     <div class="form-group row">

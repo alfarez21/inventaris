@@ -18,35 +18,35 @@
                     <table>
                         <tr>
                             <td width="200" class="py-2"><strong>Kode Barang</strong></td>
-                            <td>009</td>
+                            <td>{{$inventaris->kode_inventaris}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Nama</strong></td>
-                            <td>nama</td>
+                            <td>{{$inventaris->nama}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Jenis</strong></td>
-                            <td>nama</td>
+                            <td>{{$inventaris->nama_jenis}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Ruang</strong></td>
-                            <td>nama</td>
+                            <td>{{$inventaris->nama_ruang}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Jumlah</strong></td>
-                            <td>nama</td>
+                            <td>{{$inventaris->jumlah}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Kondisi</strong></td>
-                            <td>nama</td>
+                            <td>{{$inventaris->kondisi}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Keterangan</strong></td>
-                            <td>nama</td>
+                            <td>{{$inventaris->keterangan}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Tanggal Register</strong></td>
-                            <td>nama</td>
+                            <td>{{$inventaris->tanggal_register}}</td>
                         </tr>
                     </table>
                 </div>

@@ -14,31 +14,48 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <form action="{{ url('') }}/{{$aksi}}petugas" method="post">
+                        @csrf
+                        @if($aksi=="Edit")<input type="hidden" class="form-control" name="id" value="{{$petugas->id_petugas}}">@endif
                         <div class="form-group row">
                             <label for="username" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="username">
+                                <input type="text" class="form-control" name="username" id="username" value="@if($aksi=="Edit"){{$petugas->username}}@endif">
+                                @error('username')<span class="small muted text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="Nama" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="Nama">
+                                <input type="text" class="form-control" name="nama" id="Nama" value="@if($aksi=="Edit"){{$petugas->nama_petugas}}@endif">
+                                @error('nama')<span class="small muted text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="Level" class="col-sm-2 col-form-label">Level</label>
                             <div class="col-sm-2">
-                                <select class="form-control select2bs4" id="Level" style="width: 100%;">
-                                    <option selected="selected">Alabama</option>
-                                    <option>Alaska</option>
-                                    <option disabled="disabled">California (disabled)</option>
-                                    <option>Delaware</option>
-                                    <option>Tennessee</option>
-                                    <option>Texas</option>
-                                    <option>Washington</option>
+                                <select class="form-control select2bs4" id="Level" name="level" style="width: 100%;">
+                                    <option value="0">-- Level --</option>
+                                    @foreach ($level as $lvl)
+                                        
+                                        @if ($aksi=="Edit")
+                                            @if ($lvl->id_level==$petugas->id_level)
+                                                <option value="{{$lvl->id_level}}" selected>{{$lvl->nama_level}}</option>
+                                            @else
+                                                <option value="{{$lvl->id_level}}">{{$lvl->nama_level}}</option>
+                                            @endif
+                                        @else
+                                            <option value="{{$lvl->id_level}}">{{$lvl->nama_level}}</option>
+                                        @endif
+                                        
+                                    @endforeach
                                 </select>
+                                @error('level')<span class="small muted text-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
                         <div class="form-group row">

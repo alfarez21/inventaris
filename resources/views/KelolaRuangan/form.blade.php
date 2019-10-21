@@ -13,23 +13,32 @@
                 </div>
             </div>
             <div class="card-body">
-                <form class="form-horizontal">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <form method='post' action="{{ url('') }}/{{ $aksi }}ruangan" class="form-horizontal">
+                    @csrf
+                    @if($aksi == "Edit")
+                        <input type="hidden" name="id" value="{{$ruang->id_ruang}}">
+                    @endif
                     <div class="form-group row">
                         <label for="Kode" class="col-sm-2 col-form-label">Kode Ruangan</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="Kode">
+                            <input type="text" name='kode' class="form-control" id="Kode" @if($aksi == "Edit") value="{{$ruang->kode_ruang}}" @endif>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Nama" class="col-sm-2 col-form-label">Nama Ruangan</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" id="Nama">
+                            <input type="text" name='nama' class="form-control" id="Nama" @if($aksi == "Edit") value="{{$ruang->nama_ruang}}" @endif>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="Ket" class="col-sm-2 col-form-label">Keterangan</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" id="Ket">
+                            <input type="text" name='keterangan' class="form-control" id="Ket" @if($aksi == "Edit") value="{{$ruang->keterangan}}" @endif>
                         </div>
                     </div>
                     <div class="form-group row">

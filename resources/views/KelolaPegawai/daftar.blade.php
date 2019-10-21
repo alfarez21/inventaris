@@ -14,6 +14,11 @@
                 </div>
             </div>
             <div class="card-body">
+                @if (session('status'))
+                    <div class="alert alert-danger">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <table id="tableFull" class="table table-hover table-bordered">
                     <thead class="thead-light text-center">
                         <tr>
@@ -25,39 +30,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>009088</td>
-                            <td>Muhamad Rifky</td>
-                            <td>Ket</td>
-                            <td class="text-center">
-                                <a href="{{ url('') }}/pegawai/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="{{ url('') }}/pegawai/edit" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>009088</td>
-                            <td>Muhamad Rifky</td>
-                            <td>Ket</td>
-                            <td class="text-center">
-                                <a href="{{ url('') }}/pegawai/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="{{ url('') }}/pegawai/edit" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>009088</td>
-                            <td>Muhamad Rifky</td>
-                            <td>Ket</td>
-                            <td class="text-center">
-                                <a href="{{ url('') }}/pegawai/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="{{ url('') }}/pegawai/edit" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
+                        @foreach ($pegawai as $peg)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$peg->nip}}</td>
+                                <td>{{$peg->nama_pegawai}}</td>
+                                <td>{{$peg->alamat}}</td>
+                                <td class="text-center">
+                                    <a href="{{ url('') }}/pegawai/detail/{{$peg->id_pegawai}}" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ url('') }}/pegawai/edit/{{$peg->id_pegawai}}" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ url('') }}/pegawai/hapus/{{$peg->id_pegawai}}" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -12,7 +12,13 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    <?php if(session('status')): ?>
+                        <div class="alert alert-success">
+                            <?php echo e(session('status')); ?>
+
+                        </div>
+                    <?php endif; ?>
+                    <table id="tableFull" class="table table-bordered table-hover">
                         <thead class="thead-light text-center">
                             <tr>
                                 <th width="10">No</th>
@@ -22,17 +28,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $__currentLoopData = $petugas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pet): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>1</td>
-                                <td>Esa</td>
-                                <td>Admin</td>
+                                <td><?php echo e($loop->iteration); ?></td>
+                                <td><?php echo e($pet->nama_petugas); ?></td>
+                                <td><?php echo e($pet->nama_level); ?></td>
                                 <td class="text-center">
-                                    <a href="<?php echo e(url('')); ?>/petugas/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                    <a href="<?php echo e(url('')); ?>/petugas/edit" title="edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="<?php echo e(url('')); ?>/petugas/reset" title="reset" class="btn btn-warning"><i class="fas fa-redo-alt"></i></a>
-                                    <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="<?php echo e(url('')); ?>/petugas/detail/<?php echo e($pet->id_petugas); ?>" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="<?php echo e(url('')); ?>/petugas/edit/<?php echo e($pet->id_petugas); ?>" title="edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="<?php echo e(url('')); ?>/petugas/reset/<?php echo e($pet->id_petugas); ?>" title="reset" class="btn btn-warning"><i class="fas fa-redo-alt"></i></a>
+                                    <a href="<?php echo e(url('')); ?>/petugas/hapus/<?php echo e($pet->id_petugas); ?>" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>

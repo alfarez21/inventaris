@@ -28,12 +28,34 @@
       <form action="<?php echo e(url("")); ?>/login" method="post">
         <?php echo csrf_field(); ?>
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="Username">
+          <input type="text" class="form-control" name="username" placeholder="Username" value="<?php echo e(old('username')); ?>">
+          <?php $__errorArgs = ['username'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="small muted text-danger"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Password" value="<?php echo e(old('password')); ?>">
+          <?php $__errorArgs = ['password'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?><span class="small muted text-danger"><?php echo e($message); ?></span><?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
         </div>
         <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+        <?php if(session('status')): ?>
+          <div class="alert alert-danger mt-3">
+              <?php echo e(session('status')); ?>
+
+          </div>
+        <?php endif; ?>
       </form>
   </div>
 </div>

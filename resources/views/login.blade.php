@@ -28,12 +28,19 @@
       <form action="{{ url("")}}/login" method="post">
         @csrf
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="Username">
+          <input type="text" class="form-control" name="username" placeholder="Username" value="{{ old('username') }}">
+          @error('username')<span class="small muted text-danger">{{ $message }}</span>@enderror
         </div>
         <div class="form-group has-feedback">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="password" placeholder="Password" value="{{ old('password') }}">
+          @error('password')<span class="small muted text-danger">{{ $message }}</span>@enderror
         </div>
         <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+        @if (session('status'))
+          <div class="alert alert-danger mt-3">
+              {{ session('status') }}
+          </div>
+        @endif
       </form>
   </div>
 </div>

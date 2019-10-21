@@ -17,15 +17,15 @@
                 <table>
                     <tr>
                         <td class="py-2" width="200"><strong>NIP</strong></td>
-                        <td>009</td>
+                        <td>{{$pegawai->nip}}</td>
                     </tr>
                     <tr>
                         <td class="py-2" width="200"><strong>Nama Pegawai</strong></td>
-                        <td>Lab 01</td>
+                        <td>{{$pegawai->nama_pegawai}}</td>
                     </tr>
                     <tr>
                         <td class="py-2" width="200"><strong>Alamat</strong></td>
-                        <td>Ruangan Untuk Komputer</td>
+                        <td>{{$pegawai->alamat}}</td>
                     </tr>
                 </table>
             </div>

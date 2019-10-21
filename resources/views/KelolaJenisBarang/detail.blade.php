@@ -18,15 +18,11 @@
                     <table>
                         <tr>
                             <td width="200" class="py-2"><strong>Kode</strong></td>
-                            <td>ASD</td>
+                            <td>{{$jenis->kode_jenis}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Nama</strong></td>
-                            <td>sadsads</td>
-                        </tr>
-                        <tr>
-                            <td width="200" class="py-2"><strong>Keterangan</strong></td>
-                            <td>dsfds</td>
+                            <td>{{$jenis->nama_jenis}}</td>
                         </tr>
                     </table>
                 </div>

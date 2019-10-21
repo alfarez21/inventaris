@@ -15,29 +15,34 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                <table id="tableFull" class="table table-bordered table-">
-                    <thead class="thead-light text-center">
-                        <tr>
-                            <th width="10">No</th>
-                            <th>Kode Jenis</th>
-                            <th>Nama Jenis</th>
-                            <th>Keterangan</th>
-                            <th width="150">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>asdad</td>
-                            <td>elektronik</td>
-                            <td>sadsad</td>
-                            <td class="text-center">
-                                <a href="{{ url('') }}/jenisbarang/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="{{ url('') }}/jenisbarang/edit" title="edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                      </tbody>
+                    @if (session('status'))
+                        <div class="alert alert-danger">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <table id="tableFull" class="table table-bordered table-">
+                        <thead class="thead-light text-center">
+                            <tr>
+                                <th width="10">No</th>
+                                <th width="120">Kode Jenis</th>
+                                <th>Nama Jenis</th>
+                                <th width="150">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($jenis as $j)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$j->kode_jenis}}</td>
+                                <td>{{$j->nama_jenis}}</td>
+                                <td class="text-center">
+                                    <a href="{{ url('') }}/jenisbarang/detail/{{$j->id_jenis}}" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ url('') }}/jenisbarang/edit/{{$j->id_jenis}}" title="edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ url('') }}/jenisbarang/hapus/{{$j->id_jenis}}" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- ./card-body -->

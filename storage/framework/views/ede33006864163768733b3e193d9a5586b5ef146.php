@@ -1,3 +1,5 @@
+<?php $level = Session::get('level') ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,12 +54,8 @@
           <i class="far fa-user"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> Edit Profile
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> Logout
+          <a href="<?php echo e(url("logout")); ?>" class="dropdown-item">
+            <i class="fas fa-sign-out-alt mr-2"></i> Logout
           </a>
         </div>
       </li>
@@ -68,10 +66,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="<?php echo e(url("")); ?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">App Inventaris</span>
+    <a href="index3.html" class="brand-link text-center">
+      <span class="brand-text font-weight-light"><strong>App Inventaris</strong></span>
     </a>
 
     <!-- Sidebar -->
@@ -82,7 +78,7 @@
           <img src="<?php echo e(url("")); ?>/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Muhamad Rifky</a>
+          <a href="#" class="d-block"><?php echo e(Session::get("nama")); ?></a>
         </div>
       </div>
 
@@ -92,38 +88,55 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           
+
           
           <li class="nav-item">
+            <a href="<?php echo e(url('')); ?>" class="nav-link <?php if($alink=="beranda"): ?> active <?php endif; ?>">
+              <i class="nav-icon fas fa-home"></i>
+              <p>Beranda</p>
+            </a>
+          </li>
+
+          <?php if($level==1): ?>
+          <li class="nav-item">
             <a href="<?php echo e(url('')); ?>/ruangan" class="nav-link <?php if($alink=="ruangan"): ?> active <?php endif; ?>">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-hospital"></i>
               <p>Kelola Ruangan</p>
             </a>
           </li>
+          <?php endif; ?>
 
+          <?php if($level==1): ?>
           
           <li class="nav-item">
             <a href="<?php echo e(url('')); ?>/pegawai" class="nav-link <?php if($alink=="pegawai"): ?> active <?php endif; ?>">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>Kelola Pegawai</p>
             </a>
           </li>
-          
+          <?php endif; ?>
+
+          <?php if($level==1): ?>          
           
           <li class="nav-item">
             <a href="<?php echo e(url('')); ?>/barang" class="nav-link <?php if($alink=="barang"): ?> active <?php endif; ?>">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-boxes"></i>
               <p>Kelola Barang</p>
             </a>
           </li>
-          
+          <?php endif; ?>
+
+          <?php if($level==1): ?>
           
           <li class="nav-item">
             <a href="<?php echo e(url('')); ?>/petugas" class="nav-link <?php if($alink=="petugas"): ?> active <?php endif; ?>">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>Kelola Petugas</p>
             </a>
           </li>
+          <?php endif; ?>
 
+          <?php if($level==1): ?>
           
           <li class="nav-item">
             <a href="<?php echo e(url('')); ?>/jenisbarang" class="nav-link <?php if($alink=="jenisbarang"): ?> active <?php endif; ?>">
@@ -131,6 +144,18 @@
               <p>Kelola Jenis Barang</p>
             </a>
           </li>
+          <?php endif; ?>
+
+          <?php if($level==1 || $level==2): ?>
+          
+          <li class="nav-item">
+            <a href="<?php echo e(url('')); ?>/peminjaman" class="nav-link <?php if($alink=="peminjaman"): ?> active <?php endif; ?>">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Peminjaman</p>
+            </a>
+          </li>
+          <?php endif; ?>
+
 
         </ul>
       </nav>

@@ -18,15 +18,15 @@
                     <table>
                         <tr>
                             <td width="200" class="py-2"><strong>Username</strong></td>
-                            <td>ASD</td>
+                            <td>{{ $petugas->username }}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Nama</strong></td>
-                            <td>sadsads</td>
+                            <td>{{ $petugas->nama_petugas }}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Level</strong></td>
-                            <td>dsfds</td>
+                            <td>{{ $petugas->nama_level }}</td>
                         </tr>
                     </table>
                 </div>

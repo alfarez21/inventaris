@@ -11,6 +11,12 @@
                 </div>
             </div>
             <div class="card-body">
+                <?php if(session('status')): ?>
+                    <div class="alert alert-danger">
+                        <?php echo e(session('status')); ?>
+
+                    </div>
+                <?php endif; ?>
                 <table id="tableFull" class="table table-hover table-bordered">
                     <thead class="thead-light text-center">
                         <tr>
@@ -22,39 +28,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>009088</td>
-                            <td>Muhamad Rifky</td>
-                            <td>Ket</td>
-                            <td class="text-center">
-                                <a href="<?php echo e(url('')); ?>/pegawai/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="<?php echo e(url('')); ?>/pegawai/edit" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>009088</td>
-                            <td>Muhamad Rifky</td>
-                            <td>Ket</td>
-                            <td class="text-center">
-                                <a href="<?php echo e(url('')); ?>/pegawai/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="<?php echo e(url('')); ?>/pegawai/edit" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>009088</td>
-                            <td>Muhamad Rifky</td>
-                            <td>Ket</td>
-                            <td class="text-center">
-                                <a href="<?php echo e(url('')); ?>/pegawai/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                <a href="<?php echo e(url('')); ?>/pegawai/edit" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </td>
-                        </tr>
+                        <?php $__currentLoopData = $pegawai; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $peg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <tr>
+                                <td><?php echo e($loop->iteration); ?></td>
+                                <td><?php echo e($peg->nip); ?></td>
+                                <td><?php echo e($peg->nama_pegawai); ?></td>
+                                <td><?php echo e($peg->alamat); ?></td>
+                                <td class="text-center">
+                                    <a href="<?php echo e(url('')); ?>/pegawai/detail/<?php echo e($peg->id_pegawai); ?>" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="<?php echo e(url('')); ?>/pegawai/edit/<?php echo e($peg->id_pegawai); ?>" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="<?php echo e(url('')); ?>/pegawai/hapus/<?php echo e($peg->id_pegawai); ?>" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div>

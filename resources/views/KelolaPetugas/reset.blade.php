@@ -14,23 +14,28 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <table>
                         <tr>
                             <td width="200" class="py-2"><strong>Username</strong></td>
-                            <td>ASD</td>
+                            <td>{{$petugas->username}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Nama</strong></td>
-                            <td>sadsads</td>
+                            <td>{{$petugas->nama_petugas}}</td>
                         </tr>
                         <tr>
                             <td width="200" class="py-2"><strong>Password</strong></td>
-                            <td>dsfds</td>
+                            <td>{{$petugas->password}}</td>
                         </tr>
                         <tr>
                             <td width="200"></td>
                             <td  class="py-3">
-                                <a href="" title="reset" class="btn btn-warning"><i class="fas fa-redo"></i></a>
+                                <a href="{{ url('') }}/resetpetugas/{{$petugas->id_petugas}}" title="reset" class="btn btn-warning"><i class="fas fa-redo"></i></a>
                             </td>
                         </tr>
                     </table>

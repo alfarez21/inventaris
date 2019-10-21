@@ -14,7 +14,12 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table class="table table-bordered table-hover">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <table id="tableFull" class="table table-bordered table-hover">
                         <thead class="thead-light text-center">
                             <tr>
                                 <th width="10">No</th>
@@ -24,17 +29,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($petugas as $pet)
                             <tr>
-                                <td>1</td>
-                                <td>Esa</td>
-                                <td>Admin</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $pet->nama_petugas }}</td>
+                                <td>{{ $pet->nama_level}}</td>
                                 <td class="text-center">
-                                    <a href="{{ url('') }}/petugas/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                    <a href="{{ url('') }}/petugas/edit" title="edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ url('') }}/petugas/reset" title="reset" class="btn btn-warning"><i class="fas fa-redo-alt"></i></a>
-                                    <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="{{ url('') }}/petugas/detail/{{ $pet->id_petugas }}" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ url('') }}/petugas/edit/{{ $pet->id_petugas }}" title="edit" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ url('') }}/petugas/reset/{{ $pet->id_petugas }}" title="reset" class="btn btn-warning"><i class="fas fa-redo-alt"></i></a>
+                                    <a href="{{ url('') }}/petugas/hapus/{{ $pet->id_petugas }}" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

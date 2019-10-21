@@ -14,6 +14,11 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-danger">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <table id="tableFull" class="table table-hover table-bordered">
                         <thead class="thead-light text-center">
                             <tr>
@@ -25,17 +30,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Mobil</td>
-                                <td>sadsad</td>
-                                <td>120000</td>
-                                <td class="text-center">
-                                    <a href="{{ url('') }}/barang/detail" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                    <a href="{{ url('') }}/barang/edit" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
+                            @foreach($inventaris as $inven)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$inven->nama}}</td>
+                                    <td>{{$inven->nama_ruang}}</td>
+                                    <td>{{$inven->jumlah}}</td>
+                                    <td class="text-center">
+                                        <a href="{{ url('') }}/barang/detail/{{$inven->id_inventaris}}" title="detail" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ url('') }}/barang/edit/{{$inven->id_inventaris}}" title="edi" class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+                                        <a href="{{ url('') }}/barang/hapus/{{$inven->id_inventaris}}" title="hapus" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
